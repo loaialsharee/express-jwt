@@ -2,7 +2,8 @@ module.exports.handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = {email: '', password: ''}
 
-    if (err.code = 11000){
+    //duplicate error code
+    if (err.code === 11000){
         errors.email = 'Email has been registered';
         return errors;
     }
