@@ -2,6 +2,11 @@ module.exports.handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = {email: '', password: ''}
 
+    // incorrect email
+    if (err.message === 'Incorrect credentials'){
+        errors.email = 'Incorrect combination of email/password'
+    }
+
     //duplicate error code
     if (err.code === 11000){
         errors.email = 'Email has been registered';
