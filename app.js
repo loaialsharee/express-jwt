@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const auth = require('./routes/auth');
 const cookieParser = require('cookie-parser');
+const {requireAuth} = require('./middleware/auth')
 
 const app = express();
 
@@ -19,5 +20,5 @@ mongoose.connect(process.env.MONGODB_CONNECTION, { useNewUrlParser: true, useUni
   .catch((err) => console.log(err));
 
 app.get('/', (req, res) => res.render('home'));
-app.get('/receipes', (req, res) => res.render('receipes'));
+app.get('/receipes', requireAuth, (req, res) => res.render('receipes'));
 app.use(auth);
